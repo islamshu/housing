@@ -12,8 +12,8 @@
                     <li class="nav-item">
                         <a class="navbar-brand" href="{{ route('dashboard') }}">
                             <img class="brand-logo" alt="modern admin logo"
-                                src="{{ asset('uploads/'.get_general_value('website_icon')) }}" width="40" height="40">
-                            <h3 class="brand-text">{{ get_general_value('website_name') }}</h3>
+                                src="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png" width="40" height="40">
+                            <h3 class="brand-text">المساكن</h3>
                         </a>
                     </li>
                     <li class="nav-item d-md-none">
@@ -207,14 +207,13 @@
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#"
                                 data-toggle="dropdown">
                                 <span class="mr-1">{{ __('مرحبا') }},
-                                    <span class="user-name text-bold-700">{{ auth()->user()->firstName }}</span>
+                                    <span class="user-name text-bold-700">{{ auth()->user()->name }}</span>
                                 </span>
                                 <span class="avatar avatar-online profile-image">
-                                    <img src="{{ asset('uploads/'.auth()->user()->image) }}"
+                                    <img src="{{ asset('backend/default.png') }}"
                                         alt="avatar" ><i></i></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('edit_profile')}}" ><i
-                                        class="ft-user"></i> {{ __('تعديل الملف الشخصي') }}</a>
+                            <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}"><i
                                         class="ft-power"></i> {{ __('تسجيل خروج') }}</a>
                             </div>
