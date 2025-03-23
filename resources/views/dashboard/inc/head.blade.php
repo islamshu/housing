@@ -10,10 +10,10 @@
     <meta name="keywords"
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>{{ get_general_value('website_name') }} - @yield('title')</title>
+    <title>المساكن - @yield('title')</title>
 
-    <link rel="apple-touch-icon" href="{{ asset('uploads/' . get_general_value('website_icon')) }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('uploads/' . get_general_value('website_icon')) }}">
+    <link rel="apple-touch-icon" href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link
