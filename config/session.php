@@ -156,7 +156,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'domain' => '.madares-abqary.com', // Add the leading dot
 
     /*
     |--------------------------------------------------------------------------
