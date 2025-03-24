@@ -125,7 +125,6 @@
         }
     </style>
     @yield('style')
-    @livewireStyles
 
     <!-- END Page Level CSS-->
 

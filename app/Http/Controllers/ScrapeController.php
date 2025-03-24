@@ -11,7 +11,7 @@ class ScrapeController extends Controller
     public function scrapeLink()
     {
         // URL of the website
-        $url = "https://wecima.watch/watch/%d9%85%d8%b4%d8%a7%d9%87%d8%af%d8%a9-%d9%85%d8%b3%d9%84%d8%b3%d9%84-%d8%a7%d8%b4%d8%ba%d8%a7%d9%84-%d8%b4%d9%82%d8%a9-%d8%ac%d8%af%d8%a7-%d8%ad%d9%84%d9%82%d8%a9-15-%d9%88%d8%a7%d9%84%d8%a3%d8%ae/";
+        $url = "https://wecima.watch/watch/%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9-%D9%85%D8%B3%D9%84%D8%B3%D9%84-%D8%A7%D8%B4%D8%BA%D8%A7%D9%84-%D8%B4%D9%82%D8%A9-%D8%AC%D8%AF%D8%A7-%D8%AD%D9%84%D9%82%D8%A9-14/";
 
         // Initialize Guzzle HTTP client
         $client = new Client();

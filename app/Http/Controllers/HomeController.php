@@ -25,6 +25,7 @@ class HomeController extends Controller
 
         if (Auth::attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
             $user = Auth::user();
+            $token = $user->createToken('SSO Token')->accessToken;
 
             // Check if the user has the required roles
             if ($user->hasRole(['اداري', 'مشرف اداري'])) {
