@@ -10,7 +10,7 @@
                             class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
                                 class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="{{ route('dashboard') }}">
+                        <a class="navbar-brand" href="{{ route('teacher.dashboard') }}">
                             <img class="brand-logo" alt="modern admin logo"
                                 src="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png" width="40" height="40">
                             <h3 class="brand-text">المساكن</h3>
@@ -207,49 +207,17 @@
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#"
                                 data-toggle="dropdown">
                                 <span class="mr-1">{{ __('مرحبا') }},
-                                    <span class="user-name text-bold-700">{{ auth()->user()->name }}</span>
+                                    <span class="user-name text-bold-700">{{ auth()->guard('teacher')->user()->name }}</span>
                                 </span>
                                 <span class="avatar avatar-online profile-image">
                                     <img src="{{ asset('backend/default.png') }}"
                                         alt="avatar" ><i></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('logout') }}"><i
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="{{ route('teacher.logout') }}"><i
                                         class="ft-power"></i> {{ __('تسجيل خروج') }}</a>
                             </div>
                         </li>
-                        <li class="dropdown dropdown-notification nav-item">
-                            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
-                                <i class="ficon ft-bell"></i>
-                                <span class="badge badge-pill badge-default badge-danger badge-up badge-glow" id="notification-counter">
-                                    {{ auth()->user()->unreadNotifications->count() }}
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" id="notifications-container">
-                                <li class="dropdown-menu-header">
-                                    <h6 class="dropdown-header m-0">
-                                        <span class="grey darken-2">Notifications</span>
-                                        <span class="notification-tag badge badge-danger float-right m-0" id="notification-count">
-                                            {{ auth()->user()->unreadNotifications->count() }} New
-                                        </span>
-                                    </h6>
-                                </li>
-                                <li class="scrollable-container media-list" id="notifications-list">
-                                    @foreach(auth()->user()->notifications as $notification)
-                                        <li class="media">
-                                            <div class="media-body">
-                                                <h6 class="media-heading">{{ $notification->data['destination'] }}</h6>
-                                                <p>{{ $notification->data['exit_time'] }}</p>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </li>
-                                <li class="dropdown-menu-footer">
-                                    <a class="dropdown-item text-muted text-center" href="#">Read all notifications</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
                         
                         {{-- <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i

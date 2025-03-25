@@ -58,10 +58,10 @@
 <!-- Toastr JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-@livewireScripts
 
 
 <script>
+    
     document.addEventListener("DOMContentLoaded", function() {
         if (document.getElementById("editor")) {
             CKEDITOR.replace("editor", {
@@ -149,6 +149,7 @@
     });
 </script>
 
+<script></script>
 
 
 <script>
@@ -170,25 +171,7 @@
         });
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.2/echo.iife.min.js"></script>
 
-<script>
-    // Update notification count and list via AJAX
-function loadNotifications() {
-    $.ajax({
-        url: '{{ route('notifications.index') }}', // Route to fetch notifications
-        type: 'GET',
-        success: function(response) {
-            $('#notification-counter').text(response.unread_count); // Update unread notification count
-            $('#notifications-list').html(response.notifications); // Update notifications list
-            $('#notification-count').text(response.unread_count + ' New'); // Update count in header
-        }
-    });
-}
-
-setInterval(loadNotifications, 5000); // Update notifications every 5 seconds
-
-</script>
 @yield('script')
 <!-- END PAGE LEVEL JS-->
 </body>

@@ -3,7 +3,7 @@
         <div class="navbar-container main-menu-content" data-menu="menu-container">
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class=" nav-link" href="{{ route('dashboard') }}" ><i
+                    <a class=" nav-link" href="{{ route('teacher.dashboard') }}" ><i
                             class="la la-tachometer"></i>
                         <span>{{ __('الرئيسية') }}</span>
                     </a>
@@ -11,16 +11,9 @@
                 </li>
                 
                 <li class="dropdown nav-item" data-menu="dropdown">
-                        <a class=" nav-link" href="{{ route('rooms.index') }}" ><i
+                        <a class=" nav-link" href="{{ route('teacher.exit-requests.index') }}" ><i
                                 class="la la-home"></i>
                             <span>{{ __('المساكن') }}</span>
-                        </a>
-                     
-                    </li>
-                    <li class="dropdown nav-item" data-menu="dropdown">
-                        <a class=" nav-link" href="{{ route('exit-requests.index') }}" ><i
-                                class="la la-logout"></i>
-                            <span>{{ __('طلبات الخروج') }}</span>
                         </a>
                      
                     </li>

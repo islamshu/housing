@@ -77,6 +77,8 @@ return [
         'teachers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Teacher::class,
+            'auth_field' => 'id_number', // إضافة هذا الحقل
+
         ],
     ],
 

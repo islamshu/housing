@@ -10,9 +10,10 @@ use Illuminate\Foundation\Auth\User;
 
 class HomeController extends Controller
 {
-    public function change_password(){
-        $users = Admin::get();
-        foreach($users as $user){
+    public function change_password()
+    {
+        $users = Teacher::get();
+        foreach ($users as $user) {
             $user->password = bcrypt('123456');
             $user->save();
         }
@@ -43,7 +44,13 @@ class HomeController extends Controller
             return redirect()->route('dashboard');
         }
 
+
         return redirect()->back()->with(['error' => 'هناك خطا بالبيانات']);
+    }
+    public function showNotifications()
+    {
+        $notifications = auth()->user()->notifications; // Fetch notifications
+        return view('admin.dashboard', compact('notifications')); // Pass notifications to the view
     }
     public function login()
     {
@@ -70,6 +77,26 @@ class HomeController extends Controller
     {
         return view('auth.employee');
     }
+    public function markAsRead($notificationId)
+    {
+        $notification = auth()->user()->notifications()->findOrFail($notificationId);
+        $notification->markAsRead();
+
+        return back(); // Redirect back to the notifications page
+    }
+    public function getNotifications()
+    {
+        $notifications = auth()->user()->notifications;
+        $unread_count = auth()->user()->unreadNotifications->count();
+
+        $notificationsHtml = view('partials.notifications-list', compact('notifications'))->render(); // Render HTML of notifications
+
+        return response()->json([
+            'unread_count' => $unread_count,
+            'notifications' => $notificationsHtml
+        ]);
+    }
+
     public function employee_login_post(Request $request)
     {
         $request->validate([

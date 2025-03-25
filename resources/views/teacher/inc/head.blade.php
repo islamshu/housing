@@ -12,10 +12,8 @@
     <meta name="author" content="PIXINVENT">
     <title>المساكن - @yield('title')</title>
 
-    <link rel="apple-touch-icon"
-        href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
-    <link rel="shortcut icon" type="image/x-icon"
-        href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
+    <link rel="apple-touch-icon" href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://madares-abqary.com/uploads/site_logo/7KlIYLEG6UbFTU8N08bl2UR0uwhliCilmAbT9IB9.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link
@@ -94,7 +92,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/app-assets/vendors/css/extensions/toastr.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/app-assets/vendors/css/extensions/toastr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('backend/app-assets/css-rtl/plugins/forms/wizard.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backend/app-assets/css-rtl/plugins/forms/wizard.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backend/app-assets/vendors/css/pickers/daterange/daterangepicker.css') }}">
 
@@ -121,8 +120,7 @@
         .select2-container {
             width: 100% !important;
         }
-
-        .cke_notifications_area {
+        .cke_notifications_area{
             display: none !important;
         }
     </style>
@@ -131,11 +129,4 @@
     <!-- END Page Level CSS-->
 
     <!-- END Custom CSS-->
-  
-    <!-- Load Pusher first -->
-    <!-- Then load Echo -->
-    <meta name="user-id" content="{{ auth()->id() }}">
-
-    @vite(['resources/js/app.js'])
-
 </head>
