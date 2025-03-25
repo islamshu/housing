@@ -171,7 +171,7 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.2/echo.iife.min.js"></script>
 
-<script>
+{{-- <script>
     // Update notification count and list via AJAX
 function loadNotifications() {
     $.ajax({
@@ -187,7 +187,7 @@ function loadNotifications() {
 
 setInterval(loadNotifications, 5000); // Update notifications every 5 seconds
 
-</script>
+</script> --}}
 @yield('script')
 <!-- END PAGE LEVEL JS-->
 </body>

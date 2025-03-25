@@ -19,18 +19,35 @@ class RoomController extends Controller
         // $Rols = auth()->user()->getRoleNames();
         // dd($Rols);
         $branches = auth()->user()->branch;
-        $rooms= Room::whereIn('branch_id',$branches)->get();
+        $rooms= Room::where('admin_id',auth()->id())->get();
         $admins = Admin::whereHas('roles', function($query) {
             $query->whereIn('name', ['اداري', 'مشرف اداري','مشرف السكن']);
         })->get();
-                return view('dashboard.rooms.index')->with('admins',$admins)->with('branches',Branch::get())->with('rooms', Room::orderby('id', 'desc')->get());
+                return view('dashboard.rooms.index')->with('admins',$admins)->with('branches',Branch::get())->with('rooms', $rooms);
     }
     public function getAvailableEmployees(Request $request)
     {
         $assignedEmployeeIds = DB::table('employee_room')->pluck('employee_id')->toArray();
+        $branchMapping = [
+            "6"  => 1,
+            "20" => 2,
+            "7"  => 5,
+            "9"  => 6,
+            "11" => 3,
+            "10" => 4,
+        ];
         
-        $availableEmployees = Teacher::whereNotIn('id', $assignedEmployeeIds)->where('branch_id',$request->branch_id)->get();
-
+        // Get the branch_id from the request
+        $requestedBranchId = $request->branch_id;
+        
+        // Map it (fallback to original if no mapping exists)
+        $mappedBranchId = $branchMapping[$requestedBranchId] ?? $requestedBranchId;
+        
+        // Query teachers with the mapped branch_id
+        $availableEmployees = Teacher::query()
+            ->whereNotIn('id', $assignedEmployeeIds)
+            ->where('branch_id', $mappedBranchId)
+            ->get();
         return response()->json($availableEmployees);
     }
     public function addEmployees(Request $request)
