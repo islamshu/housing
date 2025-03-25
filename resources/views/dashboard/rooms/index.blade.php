@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">{{ __('قائمة السكن') }}</h4>
-                           @if(auth()->->hasRole(['اداري', 'مشرف اداري']))
+                           @if(auth()->hasRole(['اداري', 'مشرف اداري']))
                             <button class="btn btn-primary" data-toggle="modal"
                                 data-target="#addImageModal">{{ __('إضافة سكن جديد') }}</button>
                             @endif
@@ -34,7 +34,7 @@
                                         <th>{{ __('عدد اتساع المعلمات') }}</th>
                                         <th>{{ __('عدد المعلمات حاليا في السكن') }}</th>
                                         <th>{{ __('اضافة معلمات للسكن') }}</th>
-                                        @if(auth()->->hasRole(['اداري', 'مشرف اداري']))
+                                        @if(auth()->hasRole(['اداري', 'مشرف اداري']))
 
                                         <th>{{ __('الإجراءات') }}</th>
                                         @endif
@@ -66,7 +66,7 @@
                                                     {{ __('اضف معلمة') }}
                                                 </button>
                                             </td>
-                                            @if(auth()->->hasRole(['اداري', 'مشرف اداري']))
+                                            @if(auth()->hasRole(['اداري', 'مشرف اداري']))
 
                                             <td>
                                                 <a href="{{ route('rooms.edit', $room->id) }}"
