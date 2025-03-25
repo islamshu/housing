@@ -26,7 +26,12 @@ class AuthController extends Controller
         'id_number' => 'required|string', // تغيير من email إلى id_number
         'password' => 'required',
     ]);
-
+    $teacher = Teacher::where('id_number',$request->id_number)->first()->currentRoom();
+    if($teacher == null){
+        return back()->withErrors([
+            'id_number' => 'للاسف فقط المنتسبين للسكن من يمكنهم الدخول',
+        ]);
+    }
     if (Auth::guard('teacher')->attempt([
         'id_number' => $request->id_number,
         'password' => $request->password
