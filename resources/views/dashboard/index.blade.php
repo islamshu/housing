@@ -128,7 +128,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse(\App\Models\$requests = ExitRequest::with(['teacher', 'room'])
+                        @forelse(\App\Models\ExitRequest::with(['teacher', 'room'])
         ->whereHas('room', function($query) {
             $query->where('admin_id', auth()->id());
         })->take(5)->get() as $request)
