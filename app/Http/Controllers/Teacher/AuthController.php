@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function index(){
+        if(auth()->guard('teacher')->check()){
+            return redirect()->route('teacher.dashboard');
+        }else{
+            return redirect()->route('teacher.login');
+        }
+    }
     public function showLoginForm()
     {
         return view('teacher.auth.login');

@@ -47,9 +47,11 @@ Broadcast::routes(['middleware' => ['web', 'auth']]);
 
 Route::prefix('teacher')->name('teacher.')->group(function () {
     // Authentication
+    Route::get('/', [AuthController::class, 'index'])->name('index');
+
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     // Dashboard
     Route::middleware('teacher.auth')->group(function () {

@@ -24,7 +24,9 @@ class ExitRequestController extends Controller
     public function create()
     {
         $teacher = auth()->guard('teacher')->user();
-
+        if( $teacher->currentRoom() == null){
+            return redirect()->back()->with('toastr_error','انت غير مدرج بالسكن');
+        }
         // Get colleagues from the same room
         $colleagues = Teacher::whereHas('room', function ($query) use ($teacher) {
             $query->where('rooms.id', $teacher->currentRoom()->id);
