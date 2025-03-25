@@ -19,7 +19,7 @@
                     </li>
                     <li class="dropdown nav-item" data-menu="dropdown">
                         <a class=" nav-link" href="{{ route('exit-requests.index') }}" ><i
-                                class="la la-logout"></i>
+                                class="la la-sign-out"></i>
                             <span>{{ __('طلبات الخروج') }}</span>
                         </a>
                      
