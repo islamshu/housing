@@ -16,7 +16,7 @@
                                 <h4 class="mb-0">{{ \App\Models\ExitRequest::with(['teacher', 'room'])
                         ->whereHas('room', function($query) {
                             $query->where('admin_id', auth()->id());})
-                            ::count() }}</h4>
+                            ->count()}}</h4>
                                 <small>إجمالي الطلبات</small>
                             </div>
                             <div class="align-self-center">
