@@ -11,8 +11,11 @@ class ExitRequestController extends Controller
 {
     public function index()
     {
-        $requests = ExitRequest::with(['teacher', 'room'])->get();
-        return view('dashboard.exit-requests.index', compact('requests'));
+        $requests = ExitRequest::with(['teacher', 'room'])
+        ->whereHas('room', function($query) {
+            $query->where('admin_id', auth()->id());
+        })->get();     
+           return view('dashboard.exit-requests.index', compact('requests'));
     }
 
     public function create()

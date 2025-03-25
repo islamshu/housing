@@ -128,7 +128,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse(\App\Models\ExitRequest::with('teacher')->latest()->take(5)->get() as $request)
+                        @forelse(\App\Models\$requests = ExitRequest::with(['teacher', 'room'])
+        ->whereHas('room', function($query) {
+            $query->where('admin_id', auth()->id());
+        })->take(5)->get() as $request)
                             <tr>
                                 <td>{{ $request->teacher->name ?? 'غير معروف' }}</td>
                                 <td>{{ $request->created_at->format('Y-m-d') }}</td>
