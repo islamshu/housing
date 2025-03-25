@@ -136,6 +136,5 @@
     <!-- Then load Echo -->
     <meta name="user-id" content="{{ auth()->id() }}">
 
-    @vite(['resources/js/app.js'])
 
 </head>
