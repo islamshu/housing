@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Models\Branch;
 use App\Models\Room;
 use App\Models\Teacher;
@@ -19,7 +20,10 @@ class RoomController extends Controller
         // dd($Rols);
         $branches = auth()->user()->branch;
         $rooms= Room::whereIn('branch_id',$branches)->get();
-        return view('dashboard.rooms.index')->with('branches',Branch::get())->with('rooms', Room::orderby('id', 'desc')->get());
+        $admins = Admin::whereHas('roles', function($query) {
+            $query->whereIn('name', ['اداري', 'مشرف اداري','مشرف السكن']);
+        })->get();
+                return view('dashboard.rooms.index')->with('admins',$admins)->with('branches',Branch::get())->with('rooms', Room::orderby('id', 'desc')->get());
     }
     public function getAvailableEmployees(Request $request)
     {
@@ -70,7 +74,8 @@ class RoomController extends Controller
             'name' => 'required',
             'room_number' => 'required|numeric',
             'number_employee' => 'required|numeric',
-            'branch_id'=>'required|integer'
+            'branch_id'=>'required|integer',
+            'admin_id'=>'required|integer'
         ]);
         Room::create($request->all());
         return redirect()->route('rooms.index')->with('toastr_success', 'تم انشاء السكن بنجاح');

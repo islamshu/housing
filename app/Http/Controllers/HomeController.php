@@ -29,7 +29,7 @@ class HomeController extends Controller
             $token = $user->createToken('SSO Token')->accessToken;
 
             // Check if the user has the required roles
-            if ($user->hasRole(['اداري', 'مشرف اداري'])) {
+            if ($user->hasRole(['اداري', 'مشرف اداري','مشرف السكن'])) {
                 return redirect()->route('dashboard');
             } else {
                 // Log the user out if they don't have the required roles

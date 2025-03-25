@@ -26,6 +26,7 @@
                                         <td>#</td>
                                         <th>{{ __('اسم السكن') }}</th>
                                         <th>{{ __('الفرع') }}</th>
+                                        <th>{{ __('مشرف السكن') }}</th>
 
                                         <th>{{ __('عدد الغرف') }}</th>
                                         <th>{{ __('عدد اتساع المعلمات') }}</th>
@@ -40,7 +41,9 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $room->name }}</td>
+
                                             <td>{{ $room->branch->title }}</td>
+                                            <td>{{ $room->admin->name }}</td>
 
                                             <td>{{ $room->room_number }}</td>
                                             <td>{{ $room->number_employee }}</td>
@@ -160,6 +163,15 @@
                                 <option value="" disabled selected>اختر الفرع</option>
                                 @foreach ($branches as $item)
                                     <option value="{{$item->id}}">{{$item->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="number_employee">{{ __('مشرف السكن') }}</label>
+                            <select name="admin_id" class="form-control" required id="">
+                                <option value="" disabled selected>اختر المشرف</option>
+                                @foreach ($admins as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>

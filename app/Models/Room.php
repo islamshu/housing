@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Admin;
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
@@ -21,5 +22,9 @@ class Room extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
     }
 }
