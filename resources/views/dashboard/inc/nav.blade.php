@@ -218,7 +218,7 @@
                                         class="ft-power"></i> {{ __('تسجيل خروج') }}</a>
                             </div>
                         </li>
-                        <li class="dropdown dropdown-notification nav-item">
+                        {{-- <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                                 <i class="ficon ft-bell"></i>
                                 <span class="badge badge-pill badge-default badge-danger badge-up badge-glow" id="notification-counter">
@@ -248,7 +248,7 @@
                                     <a class="dropdown-item text-muted text-center" href="#">Read all notifications</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         
                         
                         {{-- <li class="dropdown dropdown-notification nav-item">
