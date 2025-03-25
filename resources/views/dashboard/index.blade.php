@@ -13,7 +13,10 @@
                     <div class="card-body p-2">
                         <div class="media d-flex">
                             <div class="media-body text-right">
-                                <h4 class="mb-0">{{ \App\Models\ExitRequest::count() }}</h4>
+                                <h4 class="mb-0">{{ \App\Models\ExitRequest::with(['teacher', 'room'])
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})
+                            ::count() }}</h4>
                                 <small>إجمالي الطلبات</small>
                             </div>
                             <div class="align-self-center">
@@ -33,7 +36,10 @@
                         <div class="media d-flex">
                             <div class="media-body text-right">
                                 <h4 class="mb-0">
-                                    {{ \App\Models\ExitRequest::where('status', 'approved')->count() }}
+                                    {{ \App\Models\ExitRequest::with(['teacher', 'room'])
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})
+                            ->where('status', 'approved')->count() }}
                                 </h4>
                                 <small>طلبات مقبولة</small>
                             </div>
@@ -54,7 +60,10 @@
                         <div class="media d-flex">
                             <div class="media-body text-right">
                                 <h4 class="mb-0">
-                                    {{ \App\Models\ExitRequest::where('status', 'pending')->count() }}
+                                    {{ \App\Models\ExitRequest::with(['teacher', 'room'])
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})
+                            ->where('status', 'pending')->count() }}
                                 </h4>
                                 <small>طلبات قيد المراجعة</small>
                             </div>
@@ -75,7 +84,10 @@
                         <div class="media d-flex">
                             <div class="media-body text-right">
                                 <h4 class="mb-0">
-                                    {{ \App\Models\ExitRequest::where('status', 'rejected')->count() }}
+                                    {{ \App\Models\ExitRequest::with(['teacher', 'room'])
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})
+                            ->where('status', 'rejected')->count() }}
                                 </h4>
                                 <small>طلبات مرفوضة</small>
                             </div>
@@ -96,7 +108,10 @@
                         <div class="media d-flex">
                             <div class="media-body text-right">
                                 <h4 class="mb-0">
-                                    {{ \App\Models\ExitRequest::where('status', 'completed')->count() }}
+                                    {{ \App\Models\ExitRequest::with(['teacher', 'room'])
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})
+                            ->where('status', 'completed')->count() }}
                                 </h4>
                                 <small>طلبات مكتملة</small>
                             </div>
@@ -129,9 +144,8 @@
                     </thead>
                     <tbody>
                         @forelse(\App\Models\ExitRequest::with(['teacher', 'room'])
-        ->whereHas('room', function($query) {
-            $query->where('admin_id', auth()->id());
-        })->take(5)->get() as $request)
+                        ->whereHas('room', function($query) {
+                            $query->where('admin_id', auth()->id());})->take(5)->get() as $request)
                             <tr>
                                 <td>{{ $request->teacher->name ?? 'غير معروف' }}</td>
                                 <td>{{ $request->created_at->format('Y-m-d') }}</td>
