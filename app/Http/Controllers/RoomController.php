@@ -21,7 +21,9 @@ class RoomController extends Controller
         $branches = auth()->user()->branch;
         if(auth()->user()->hasRole(['اداري', 'مشرف اداري'])){
             $rooms = Room::orderby('id','desc')->get();
-        $rooms = Room::where('admin_id', auth()->id())->get();
+        }else{
+            $rooms = Room::where('admin_id', auth()->id())->get();
+        }
         $admins = Admin::whereHas('roles', function ($query) {
             $query->whereIn('name', ['اداري', 'مشرف اداري', 'مشرف السكن']);
         })->orderby('id','desc')->get();
