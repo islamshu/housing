@@ -60,14 +60,7 @@
                                                 <i class="ft-eye"></i>
                                             </a>
                                             
-                                            @if($request->status == 'pending')
-                                                <a href="{{ route('teacher.exit-requests.edit', $request->id) }}" 
-                                                   class="btn btn-sm btn-warning"
-                                                   title="تعديل">
-                                                   تعديل
-                                                    <i class="ft-edit"></i>
-                                                </a>
-                                            @endif
+                                           
                                             
                                             @if($request->status == 'approved' && is_null($request->actual_return_time))
                                                 <button class="btn btn-sm btn-success complete-btn" 
