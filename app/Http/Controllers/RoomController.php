@@ -19,11 +19,13 @@ class RoomController extends Controller
         // $Rols = auth()->user()->getRoleNames();
         // dd($Rols);
         $branches = auth()->user()->branch;
-        $rooms= Room::where('admin_id',auth()->id())->get();
-        $admins = Admin::whereHas('roles', function($query) {
-            $query->whereIn('name', ['اداري', 'مشرف اداري','مشرف السكن']);
-        })->get();
-                return view('dashboard.rooms.index')->with('admins',$admins)->with('branches',Branch::get())->with('rooms', $rooms);
+        if(auth()->user()->hasRole(['اداري', 'مشرف اداري'])){
+            $rooms = Room::orderby('id','desc')->get();
+        $rooms = Room::where('admin_id', auth()->id())->get();
+        $admins = Admin::whereHas('roles', function ($query) {
+            $query->whereIn('name', ['اداري', 'مشرف اداري', 'مشرف السكن']);
+        })->orderby('id','desc')->get();
+        return view('dashboard.rooms.index')->with('admins', $admins)->with('branches', Branch::get())->with('rooms', $rooms);
     }
     public function getAvailableEmployees(Request $request)
     {
@@ -36,13 +38,13 @@ class RoomController extends Controller
             "11" => 3,
             "10" => 4,
         ];
-        
+
         // Get the branch_id from the request
         $requestedBranchId = $request->branch_id;
-        
+
         // Map it (fallback to original if no mapping exists)
         $mappedBranchId = $branchMapping[$requestedBranchId] ?? $requestedBranchId;
-        
+
         // Query teachers with the mapped branch_id
         $availableEmployees = Teacher::query()
             ->whereNotIn('id', $assignedEmployeeIds)
@@ -63,7 +65,7 @@ class RoomController extends Controller
         $number = $room->number_employee;
         $current = $room->employess->count();
         $avilabe = $number - $current;
-        
+
         if ($avilabe < count($request->employee_ids)) {
             return redirect()->back()->with('toastr_error', 'عدد المعلمات المدرج اكبر من اتساع الغرفة');
         }
@@ -91,8 +93,8 @@ class RoomController extends Controller
             'name' => 'required',
             'room_number' => 'required|numeric',
             'number_employee' => 'required|numeric',
-            'branch_id'=>'required|integer',
-            'admin_id'=>'required|integer'
+            'branch_id' => 'required|integer',
+            'admin_id' => 'required|integer'
         ]);
         Room::create($request->all());
         return redirect()->route('rooms.index')->with('toastr_success', 'تم انشاء السكن بنجاح');
@@ -111,7 +113,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        return view('dashboard.rooms.edit')->with('room', $room)->with('branches',Branch::get());
+        return view('dashboard.rooms.edit')->with('room', $room)->with('branches', Branch::get());
     }
 
     /**
@@ -123,7 +125,7 @@ class RoomController extends Controller
             'name' => 'required',
             'room_number' => 'required|numeric',
             'number_employee' => 'required|numeric',
-            'branch_id'=>'required|integer'
+            'branch_id' => 'required|integer'
         ]);
         $room->update($request->all());
         return redirect()->back()->with('toastr_success', 'تم تعديل السكن بنجاح');
@@ -142,13 +144,12 @@ class RoomController extends Controller
         $room = Room::with('employess')->findOrFail($request->room_id);
         return response()->json(['employess' => $room->employess]);
     }
-    
+
     public function removeEmployee(Request $request)
     {
         $room = Room::findOrFail($request->room_id);
         $room->employess()->detach($request->employee_id);
-    
+
         return response()->json(['success' => true]);
     }
-    
 }
