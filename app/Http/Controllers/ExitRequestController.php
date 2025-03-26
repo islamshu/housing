@@ -11,11 +11,16 @@ class ExitRequestController extends Controller
 {
     public function index()
     {
-        $requests = ExitRequest::with(['teacher', 'room'])
-        ->whereHas('room', function($query) {
-            $query->where('admin_id', auth()->id());
-        })->get();     
-           return view('dashboard.exit-requests.index', compact('requests'));
+        if (auth()->user()->hasRole(['اداري', 'مشرف اداري'])) {
+            $requests = ExitRequest::with(['teacher', 'room'])->orderby('id', 'desc')->get();
+        } else {
+            $requests = ExitRequest::with(['teacher', 'room'])
+                ->whereHas('room', function ($query) {
+                    $query->where('admin_id', auth()->id());
+                })->orderby('id', 'desc')->get();
+        }
+
+        return view('dashboard.exit-requests.index', compact('requests'));
     }
 
     public function create()
@@ -45,7 +50,7 @@ class ExitRequestController extends Controller
     }
     public function store(Request $request)
     {
-       
+
         $validated = $request->validate([
             'teacher_id' => 'required|exists:employees,id',
             'type' => 'required|in:daily,overnight',
@@ -106,7 +111,7 @@ class ExitRequestController extends Controller
             'actual_return_time' => 'required|date',
             'taxi_number' => 'required_if:transport,app|nullable|string'
         ]);
-     
+
         $exitRequest->update([
             'actual_return_time' => $request->actual_return_time,
             'taxi_number' => $request->taxi_number,
