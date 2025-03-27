@@ -27,7 +27,6 @@ class AuthController extends Controller
         'password' => 'required',
     ]);
     $teacher = Teacher::where('id_number',$request->id_number)->first()->currentRoom();
-    dd($teacher);
     if($teacher == null){
         return back()->withErrors([
             'id_number' => 'للاسف فقط المنتسبين للسكن من يمكنهم الدخول',
