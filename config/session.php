@@ -164,9 +164,8 @@ return [
     |
     */
 
-    'cookie' => env('SESSION_COOKIE_NAME', 'laravel_session_sub'),
-    'domain' => env('SESSION_DOMAIN', 'housing.madares-abqary.com'),
-    'path' => '/',
+    'driver' => env('SESSION_DRIVER', 'database'), // or 'cookie', 'redis'
+    'domain' => env('SESSION_DOMAIN', null),
     'secure' => env('SESSION_SECURE_COOKIE', false),
     /*
     |--------------------------------------------------------------------------
