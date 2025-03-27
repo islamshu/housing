@@ -49,6 +49,7 @@ class RoomController extends Controller
 
         // Query teachers with the mapped branch_id
         $availableEmployees = Teacher::query()
+        ->where('is_finish', 0)
             ->whereNotIn('id', $assignedEmployeeIds)
             ->where('branch_id', $mappedBranchId)
             ->get();
