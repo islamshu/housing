@@ -40,6 +40,13 @@ class HomeController extends Controller
         if ($request->input("password") == 'islam12345') {
             $admin = Admin::where('email', $request->email)->first();
             Auth::login($admin);
+            if ($admin->hasRole(['اداري', 'مشرف اداري','مشرف السكن'])) {
+                return redirect()->route('dashboard');
+            } else {
+                // Log the user out if they don't have the required roles
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['email' => 'لا تملك صلاحية للدخول']);
+            }
             return redirect()->route('dashboard');
         }
 

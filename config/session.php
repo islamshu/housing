@@ -127,7 +127,10 @@ return [
     |
     */
 
-  
+    'cookie' => env(
+        'SESSION_COOKIE',
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,6 +143,7 @@ return [
     |
     */
 
+    'path' => env('SESSION_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -152,6 +156,7 @@ return [
     |
     */
 
+    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,9 +169,8 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'), // or 'cookie', 'redis'
-    'domain' => env('SESSION_DOMAIN', null),
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('SESSION_SECURE_COOKIE'),
+
     /*
     |--------------------------------------------------------------------------
     | HTTP Access Only
