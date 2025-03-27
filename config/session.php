@@ -127,10 +127,7 @@ return [
     |
     */
 
-    'cookie' => env(
-        'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
-    ),
+  
 
     /*
     |--------------------------------------------------------------------------
@@ -143,7 +140,6 @@ return [
     |
     */
 
-    'path' => env('SESSION_PATH', '/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -156,7 +152,6 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,8 +164,10 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
-
+    'cookie' => env('SESSION_COOKIE_NAME', 'laravel_session_sub'),
+    'domain' => env('SESSION_DOMAIN', 'housing.madares-abqary.com'),
+    'path' => '/',
+    'secure' => env('SESSION_SECURE_COOKIE', false),
     /*
     |--------------------------------------------------------------------------
     | HTTP Access Only

